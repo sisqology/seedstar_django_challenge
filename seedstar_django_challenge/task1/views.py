@@ -22,7 +22,7 @@ def add(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            user = Users(name=request.POST['name'], email=request.POST['email'])
+            user = User(name=request.POST['name'], email=request.POST['email'])
             user.save()
             return HttpResponseRedirect('/list/')
     else:
