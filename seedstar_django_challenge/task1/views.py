@@ -19,12 +19,11 @@ def list(request):
 
 
 def add(request):
+    form = UserForm(request.POST or None)
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
             user = User(name=request.POST['name'], email=request.POST['email'])
             user.save()
             return HttpResponseRedirect('/list/')
-    else:
-        form = UserForm()
     return render(request, 'pages/add.html', {'form': form})
